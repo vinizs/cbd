@@ -13,6 +13,7 @@
   </parent>
   
   
+  
   <groupId>edu.tus.offering</groupId>
   <artifactId>SpringSysOffering</artifactId>
   <version>0.0.1-SNAPSHOT</version>
