@@ -30,21 +30,14 @@ import edu.tus.offering.validation.Validator;
 @RestController
 @Service
 public class OfferingService{
-	
-	//Logger log = (Logger) LoggerFactory.getLogger(OfferingService.class);
-			
 
 	@Autowired
 	OfferingRepository oRepo;
 	
 	@Autowired
 	Validator valid;
-		
 	
-		
-	
-	//OFFERINGS
-	
+	//OFFERINGS	
 	
 	//get all or specific (anything else but id)
 	@GetMapping("/api/v1/offerings")
@@ -53,9 +46,7 @@ public class OfferingService{
 									@RequestParam(required = false) Long courseId, 
 									@PageableDefault(sort = {"offeringId"}, direction = Sort.Direction.ASC, value = 50) final Pageable pageable)
 	{
-		
 		try {
-			
 			if (oRepo.findAll(pageable).isEmpty()) 
 				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Entities Found");			
 			else if (startDateTime == null && endDateTime == null && courseId == null) 
@@ -64,21 +55,14 @@ public class OfferingService{
 				return oRepo.findByStartDateTime(LocalDateTime.parse(startDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),pageable);
 			else if (endDateTime != null)
 				return oRepo.findByEndDateTime(LocalDateTime.parse(endDateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),pageable);			
-
 			else if (courseId != null)
 				return oRepo.findByCourseId(courseId,pageable);			
-
-			
 			else
 				return null;
-			
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Entities Found");
 		}
 	}
-
-		
-	
 	
 	//get by offering id
 	@GetMapping("/api/v1/offerings/{offeringId}")
@@ -88,8 +72,6 @@ public class OfferingService{
 			return new ResponseEntity<>(optionalOffering.get(), HttpStatus.OK);
 		} else {
 			throw new NotFoundException("Entity Not Found");
-			
-			
 		}
 	}
 
@@ -103,9 +85,6 @@ public class OfferingService{
 			throw new NotFoundException("Entity Not Found");
 		}
 	}
-	
-	
-	
 		
 	//post offering
 	@RequestMapping(value="/api/v1/offerings", method = RequestMethod.POST)
@@ -114,9 +93,6 @@ public class OfferingService{
 		Offering savedOffering = oRepo.save(offering);
 		return new ResponseEntity<Offering>(savedOffering,HttpStatus.CREATED);
 	}
-	
-		
-	
 				
 	//put offering
 	@RequestMapping(value="/api/v1/offerings/{offeringId}", method = RequestMethod.PUT)
@@ -132,7 +108,6 @@ public class OfferingService{
 			Offering existingOffering=optionalOffering.get();
 			existingOffering.setStartDateTime(offering.getStartDateTime());
 			existingOffering.setEndDateTime(offering.getEndDateTime());
-
 			Offering savedOffering = oRepo.save(existingOffering);
 			return savedOffering;
 		}
@@ -157,9 +132,6 @@ public class OfferingService{
 				}
 		}
 	}
-			
-
-
 	
 	//delete offering by course id
 	@RequestMapping(value="/api/v1/offerings-course-id/{courseId}", method = RequestMethod.DELETE)
@@ -180,17 +152,5 @@ public class OfferingService{
 				}
 		}
 	}
-	
-		
-		
-		
-		
-	
-	
-	
-	
-
-	
-	
 	
 }

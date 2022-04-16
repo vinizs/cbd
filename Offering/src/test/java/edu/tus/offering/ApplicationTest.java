@@ -1,13 +1,10 @@
 package edu.tus.offering;
 
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,10 +21,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.jayway.jsonpath.JsonPath;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-//@AutoConfigureMockMvc
 @ActiveProfiles("test")
 public class ApplicationTest{
 
@@ -60,7 +55,6 @@ public class ApplicationTest{
 	            		+ "    \"startDateTime\": \"2021-10-11 10:00\",\n"
 	            		+ "    \"endDateTime\": \"2021-10-11 11:00\"\n"
 	            		+ "}"))
-	            //.andDo(print())
 	            .andExpect(status().is2xxSuccessful());
 	}
 	
@@ -73,7 +67,6 @@ public class ApplicationTest{
 	            		+ "    \"startDateTime\": \"2021-10-11 12:00\",\n"
 	            		+ "    \"endDateTime\": \"2021-10-11 11:00\"\n"
 	            		+ "}"))
-	            //.andDo(print())
 	            .andExpect(status().is4xxClientError());
 	}
 
@@ -86,7 +79,6 @@ public class ApplicationTest{
 	            		+ "    \"startDateTime\": \"\",\n"
 	            		+ "    \"endDateTime\": \"2021-10-11 11:00\"\n"
 	            		+ "}"))
-	            //.andDo(print())
 	            .andExpect(status().is4xxClientError());
 	}
 
@@ -105,9 +97,4 @@ public class ApplicationTest{
 				.andExpect(jsonPath("$.offeringId").value("1"))
 				.andExpect(jsonPath("$.courseId").value("1"));
 	}
-	
-	
-	
-	
-	
 }

@@ -34,7 +34,6 @@ public class Offering{
 	
 	@JsonCreator
 	public Offering(
-//			@JsonProperty("offeringId") long offeringId,
 			@JsonProperty("courseId") long courseId,
 			@JsonProperty("startDateTime") LocalDateTime startDateTime, 
 			@JsonProperty("endDateTime") LocalDateTime endDateTime
@@ -48,11 +47,7 @@ public class Offering{
 	public Long getOfferingId() {
 		return offeringId;
 	}
-	
-//	public void setOfferingId(Long offeringId) {
-//        this.offeringId = offeringId;
-//    }
-		
+			
 	////////////////////////////////	
 	public long getCourseId() {
 		return courseId;
@@ -60,7 +55,6 @@ public class Offering{
     public void setCourseId(Long courseId) {
         this.courseId = courseId;
     }
-
 	
 	////////////////////////////////	
     public LocalDateTime getStartDateTime() {
@@ -77,8 +71,4 @@ public class Offering{
     public void setEndDateTime(LocalDateTime endDateTime) {
         this.endDateTime = endDateTime;
     }
-
-    
-    
-	
 }

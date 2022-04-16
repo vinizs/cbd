@@ -10,5 +10,4 @@ public class ErrorMessage {
 	public String getErrorMessage() {
 		return errorMessage;
 	}
-
 }
