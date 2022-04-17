@@ -35,7 +35,7 @@ public class ApplicationTest{
 	public void setup() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
-	
+		
 	@Test
 	public void postOffering() throws Exception {
 		MvcResult result = 	mockMvc.perform(get("/api/v1/offerings")).andReturn();
@@ -46,7 +46,8 @@ public class ApplicationTest{
 		} else {
 			id = JsonPath.parse(response).read("$.content.length()");
 		}		
-		id++;
+//		id++;
+		id = (id+1)*10;
 		
 		mockMvc.perform(post("/api/v1/offerings")
 	            .contentType(MediaType.APPLICATION_JSON)
@@ -95,6 +96,6 @@ public class ApplicationTest{
 				.andExpect(status().isOk())		
 				.andExpect(content().contentType("application/json"))
 				.andExpect(jsonPath("$.offeringId").value("1"))
-				.andExpect(jsonPath("$.courseId").value("1"));
+				.andExpect(jsonPath("$.courseId").value("10"));
 	}
 }
