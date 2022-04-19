@@ -37,6 +37,14 @@ public class OfferingService{
 	@Autowired
 	Validator valid;
 	
+	
+	@RequestMapping("/")
+	public String home() {
+		return "Welcome! v1";
+	}
+	
+	
+	
 	//OFFERINGS	
 	
 	//get all or specific (anything else but id)
