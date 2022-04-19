@@ -45,8 +45,8 @@ public class ApplicationTest{
 			id = 0;
 		} else {
 			id = JsonPath.parse(response).read("$.content.length()");
+			System.out.println("\nhere 1: "+response+"\n");
 		}		
-//		id++;
 		id = (id+1)*10;
 		
 		mockMvc.perform(post("/api/v1/offerings")
@@ -64,7 +64,7 @@ public class ApplicationTest{
 		mockMvc.perform(post("/api/v1/offerings")
 	            .contentType(MediaType.APPLICATION_JSON)
 	            .content("{\n"
-	            		+ "    \"courseId\": 11,\n"
+	            		+ "    \"courseId\": 10,\n"
 	            		+ "    \"startDateTime\": \"2021-10-11 12:00\",\n"
 	            		+ "    \"endDateTime\": \"2021-10-11 11:00\"\n"
 	            		+ "}"))
@@ -73,18 +73,38 @@ public class ApplicationTest{
 
 	@Test
 	public void postOfferingEmptyFields() throws Exception {
+		
+		MvcResult result = 	mockMvc.perform(get("/api/v1/offerings")).andReturn();
+		String response = result.getResponse().getContentAsString();
+//		Integer id;		
+//		if (response.isBlank()) {
+//			id = 0;
+//		} else {
+			//id = JsonPath.parse(response).read("$.content.length()");
+			System.out.println("\nhere 1: "+response+"\n");
+//		}		
+//		id = (id+1)*10;
+		
+		
+		
+		//
 		mockMvc.perform(post("/api/v1/offerings")
 	            .contentType(MediaType.APPLICATION_JSON)
 	            .content("{\n"
-	            		+ "    \"courseId\": 11,\n"
+	            		+ "    \"courseId\": 10,\n"
 	            		+ "    \"startDateTime\": \"\",\n"
 	            		+ "    \"endDateTime\": \"2021-10-11 11:00\"\n"
 	            		+ "}"))
 	            .andExpect(status().is4xxClientError());
+		//
+		
+		
+		
+		
 	}
 
 	@Test
-	public void getAllOffering() throws Exception {
+	public void getAllOfferings() throws Exception {
 		mockMvc.perform(get("/api/v1/offerings"))
 				.andExpect(status().isOk())		
 				.andExpect(content().contentType("application/json"));
