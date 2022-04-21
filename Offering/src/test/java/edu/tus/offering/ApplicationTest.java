@@ -168,34 +168,11 @@ public class ApplicationTest{
 	            		+ "}"))
 	            .andExpect(status().is4xxClientError());
 	}
-	
-	//tests successful delete offering
-	//should return 2xx
-	@Test
-	public void deleteOffering() throws Exception {
 		
-		MvcResult result = 	mockMvc.perform(get("/api/v1/offerings")).andReturn();
-		String response = result.getResponse().getContentAsString();
-		Integer id;
-		if (response.isBlank()) {
-			id = 0;
-		} else {
-			id = JsonPath.parse(response).read("$.content.length()");
-		}		
-		
-		mockMvc.perform(delete("/api/v1/offerings/"+id)
-	            .contentType(MediaType.APPLICATION_JSON)
-	            .content("{\n"
-	            		+ "    \"startDateTime\": \"2021-10-11 10:00\",\n"
-	            		+ "    \"endDateTime\": \"2021-10-11 11:00\"\n"
-	            		+ "}"))
-	            .andExpect(status().is2xxSuccessful());
-	}
-	
 	//tests unsuccessful delete offering, not found
 	//should return 4xx
 	@Test
-	public void deleteOfferingDateTime() throws Exception {
+	public void deleteOfferingNonExisting() throws Exception {
 		mockMvc.perform(delete("/api/v1/offerings/7777")
 	            .contentType(MediaType.APPLICATION_JSON)
 	            .content("{\n"
