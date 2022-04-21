@@ -40,7 +40,7 @@ public class OfferingService{
 	
 	@RequestMapping("/")
 	public String home() {
-		return "Welcome! v1";
+		return "Welcome! v2";
 	}
 	
 	
@@ -52,7 +52,7 @@ public class OfferingService{
 	public Page<Offering> getAllOfferings(	@RequestParam(required = false) String startDateTime,  //date parsed below
 									@RequestParam(required = false) String endDateTime,  //date parsed below
 									@RequestParam(required = false) Long courseId, 
-									@PageableDefault(sort = {"offeringId"}, direction = Sort.Direction.ASC, value = 50) final Pageable pageable)
+									@PageableDefault(sort = {"offeringId"}, direction = Sort.Direction.ASC, value = 500) final Pageable pageable)
 	{
 		try {
 			if (oRepo.findAll(pageable).isEmpty()) 
