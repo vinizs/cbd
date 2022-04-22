@@ -40,7 +40,7 @@ public class OfferingService{
 	
 	@RequestMapping("/")
 	public String home() {
-		return "Welcome! v3";
+		return "Welcome! v4";
 	}
 	
 	
