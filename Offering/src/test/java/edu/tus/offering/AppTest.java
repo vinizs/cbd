@@ -295,42 +295,50 @@ public class AppTest {
 	            		+ "}"))
 				.andExpect(status().is4xxClientError());
 	}
+	
+	//test error get param start
+	//should return 4xx
+	@Test
+	public void getAllOfferingsParamStart() throws Exception {
+		mockMvc.perform(get("/api/v1/offerings?startDateTime=2"))
+				.andExpect(status().is4xxClientError());	
+	}
 
+	//test error get param end
+	//should return 4xx
+	@Test
+	public void getAllOfferingsParamEnd() throws Exception {
+		mockMvc.perform(get("/api/v1/offerings?endDateTime=2"))
+				.andExpect(status().is4xxClientError());	
+	}
     
-//	@Test
-//	public void givenNotFound_whenGetSpecificException_thenNotFoundCode() throws Exception {
-//	    String exceptionParam = "not_found";
-//
-//	    mockMvc.perform(get("/api/v1/offerings", exceptionParam)
-//	      .contentType(MediaType.APPLICATION_JSON))
-//	      .andExpect(status().isNotFound())
-//	      .andExpect(result -> assertTrue(result.getResolvedException() instanceof ResourceNotFoundException))
-//	      .andExpect(result -> assertEquals("resource not found", result.getResolvedException().getMessage()));
-//	}
-	
-	
-	
-	
-	//test successful get all
-		//should return 2xx
-		@Test
-		public void getAllOfferingsParamStart() throws Exception {
-			mockMvc.perform(get("/api/v1/offerings?startDateTime=2"))
-					.andExpect(status().is4xxClientError());	
-		}
-	
-		//test successful get all
-		//should return 2xx
-		@Test
-		public void getAllOfferingsParamEnd() throws Exception {
-			mockMvc.perform(get("/api/v1/offerings?endDateTime=2"))
-					.andExpect(status().is4xxClientError());	
-		}
-    
+	//test error get param courseId
+	//should return 2xx
+	@Test
+	public void getAllOfferingsParamCourseId() throws Exception {
+		mockMvc.perform(get("/api/v1/offerings?courseId=9999"))
+				.andExpect(status().is2xxSuccessful());	
+	}
 		
+	//test error put offering 9999
+	//should return 4xx
+	@Test
+	public void putOfferingsNonExisting() throws Exception {
+		mockMvc.perform(put("/api/v1/offerings/9999"))
+				.andExpect(status().is4xxClientError());	
+	}	
 		
-		
-		
+	//test error delete offering 9999
+	//should return 4xx
+	@Test
+	public void deleteOfferingsNonExisting() throws Exception {
+		mockMvc.perform(delete("/api/v1/offerings/9999"))
+				.andExpect(status().is4xxClientError());	
+	}	
+
+	
+	
+	
     
 	
 }
