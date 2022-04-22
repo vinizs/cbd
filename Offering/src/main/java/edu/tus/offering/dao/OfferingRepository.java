@@ -11,7 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OfferingRepository extends JpaRepository<Offering, Long>{
+public interface OfferingRepository extends JpaRepository<Offering, Long> {
 	Page<Offering> findByStartDateTime(LocalDateTime startDateTime, Pageable pageable);
 	Page<Offering> findByEndDateTime(LocalDateTime endDateTime, Pageable pageable);
 	Page<Offering> findByCourseId(long courseId, Pageable pageable);

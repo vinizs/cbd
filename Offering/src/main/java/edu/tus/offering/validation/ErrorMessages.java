@@ -7,11 +7,11 @@ public enum ErrorMessages {
 	
 	private String errorMessage;
 	
-	ErrorMessages(String errMsg){
+	ErrorMessages(String errMsg) {
 		this.errorMessage=errMsg;
 	}
 	
-	public String getMsg(){
+	public String getMsg() {
 		return errorMessage;
 	}
 }

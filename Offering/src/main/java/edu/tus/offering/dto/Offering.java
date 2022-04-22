@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-public class Offering{
+public class Offering {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -37,7 +37,7 @@ public class Offering{
 			@JsonProperty("courseId") long courseId,
 			@JsonProperty("startDateTime") LocalDateTime startDateTime, 
 			@JsonProperty("endDateTime") LocalDateTime endDateTime
-			 ){
+			 ) {
 		this.courseId = courseId;
 		this.startDateTime = startDateTime;
 		this.endDateTime = endDateTime;

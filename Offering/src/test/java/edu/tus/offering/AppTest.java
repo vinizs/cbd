@@ -39,7 +39,7 @@ import edu.tus.offering.exception.NotFoundException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class AppTest{
+public class AppTest {
 	
 	
 	
