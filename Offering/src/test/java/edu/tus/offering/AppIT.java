@@ -26,7 +26,7 @@ import com.jayway.jsonpath.JsonPath;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
-public class ApplicationTest{
+public class AppIT{
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
@@ -49,10 +49,8 @@ public class ApplicationTest{
 			id = 0;
 		} else {
 			id = JsonPath.parse(response).read("$.content.length()");
-			System.out.println("\nhere 1: "+response+"\n");
 		}		
 		id = (id+1)*10;
-		
 		mockMvc.perform(post("/api/v1/offerings")
 	            .contentType(MediaType.APPLICATION_JSON)
 	            .content("{\n"
