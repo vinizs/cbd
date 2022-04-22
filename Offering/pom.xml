@@ -99,21 +99,32 @@
 	
 	
 	<dependency>
-    <groupId>net.minidev</groupId>
-    <artifactId>json-smart</artifactId>
-    <version>2.3</version>
-    <scope>test</scope>
-</dependency> 
-<dependency> 
-    <groupId>net.minidev</groupId>
-    <artifactId>asm</artifactId>
-    <version>1.0.2</version>
-    <scope>test</scope>
-</dependency>
-	
-	
+	    <groupId>net.minidev</groupId>
+	    <artifactId>json-smart</artifactId>
+	    <version>2.3</version>
+	    <scope>test</scope>
+	</dependency> 
+	<dependency> 
+	    <groupId>net.minidev</groupId>
+	    <artifactId>asm</artifactId>
+	    <version>1.0.2</version>
+	    <scope>test</scope>
+	</dependency>
+
+
+
+
+
 	
   </dependencies>
+  
+
+
+
+
+
+
+  
   <build>
   <finalName>${project.artifactId}</finalName>
   	<plugins>
@@ -121,6 +132,30 @@
   			<groupId>org.springframework.boot</groupId>
 	  		<artifactId>spring-boot-maven-plugin</artifactId> 
   		</plugin>
+  		
+  		
+		<plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-failsafe-plugin</artifactId>
+	        <executions>
+	          <execution>
+	            <goals>
+	              <goal>integration-test</goal>
+	              <goal>verify</goal>
+	            </goals>
+	          </execution>
+	        </executions>
+      </plugin>  		
+  		
+  		
+  		
+  		
+  		
+  		
+  		
+  		
   	</plugins>
   </build>
 </project>
+
+
