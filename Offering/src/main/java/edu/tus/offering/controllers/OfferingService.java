@@ -31,6 +31,8 @@ import edu.tus.offering.validation.Validator;
 @Service
 public class OfferingService{
 
+	public static final String NO_ENTITIES = "No Entities Found";
+	
 	@Autowired
 	OfferingRepository oRepo;
 	
@@ -40,10 +42,8 @@ public class OfferingService{
 	
 	@RequestMapping("/")
 	public String home() {
-		return "Welcome! v4";
+		return "Welcome! v0";
 	}
-	
-	
 	
 	//OFFERINGS	
 	
@@ -56,7 +56,7 @@ public class OfferingService{
 	{
 		try {
 			if (oRepo.findAll(pageable).isEmpty()) 
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Entities Found");			
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND, NO_ENTITIES);			
 			else if (startDateTime == null && endDateTime == null && courseId == null) 
 				return oRepo.findAll(pageable);			
 			else if (startDateTime != null)
@@ -68,7 +68,7 @@ public class OfferingService{
 			else
 				return null;
 		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No Entities Found");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, NO_ENTITIES);
 		}
 	}
 	
@@ -107,7 +107,7 @@ public class OfferingService{
 	Offering updateOffering(@PathVariable("offeringId") long offeringId, @RequestBody Offering offering) throws ValidationException {
 		//check if it exists
 		if (oRepo.findById(offeringId).isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity Not Found");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, NO_ENTITIES);
 		}
 		else {
 			valid.validateOffering(offering);
@@ -126,7 +126,7 @@ public class OfferingService{
 	Offering deleteOffering(@PathVariable("offeringId") long offeringId) {
 		//check if it exists
 		if (oRepo.findById(offeringId).isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity Not Found");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, NO_ENTITIES);
 		}
 		else {
 			try {
@@ -146,7 +146,7 @@ public class OfferingService{
 	Offering deleteOfferingByCourse(@PathVariable("courseId") long courseId) {
 		//check if it exists
 		if (oRepo.findByCourseId(courseId).isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Entity Not Found");
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, NO_ENTITIES);
 		}
 		else {
 			try {

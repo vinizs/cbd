@@ -18,8 +18,8 @@ public class OfferingApp extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
 		SpringApplication.run(OfferingApp.class, args);
-		System.out.println("--> Offering is up!");
-		System.out.println("--> "+ System.getProperty("user.dir"));
+		//System.out.println("--> Offering is up!");
+		//System.out.println("--> "+ System.getProperty("user.dir"));
 	}
 
 	@Bean
