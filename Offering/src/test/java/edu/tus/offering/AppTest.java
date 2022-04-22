@@ -1,5 +1,7 @@
 package edu.tus.offering;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -10,6 +12,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+
+import org.apache.velocity.exception.ResourceNotFoundException;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -64,6 +70,19 @@ public class AppTest {
         MockitoAnnotations.initMocks(this);
     }
 	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     //unit test local repo and check returned id
     @Test
     public void testCourseIdOK() {
@@ -119,6 +138,9 @@ public class AppTest {
 	public void setup() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
+	
+	
+	
 	
 	//tests successful post offering.
 	//should return 2xx
@@ -275,9 +297,40 @@ public class AppTest {
 	}
 
     
-    
+//	@Test
+//	public void givenNotFound_whenGetSpecificException_thenNotFoundCode() throws Exception {
+//	    String exceptionParam = "not_found";
+//
+//	    mockMvc.perform(get("/api/v1/offerings", exceptionParam)
+//	      .contentType(MediaType.APPLICATION_JSON))
+//	      .andExpect(status().isNotFound())
+//	      .andExpect(result -> assertTrue(result.getResolvedException() instanceof ResourceNotFoundException))
+//	      .andExpect(result -> assertEquals("resource not found", result.getResolvedException().getMessage()));
+//	}
 	
+	
+	
+	
+	//test successful get all
+		//should return 2xx
+		@Test
+		public void getAllOfferingsParamStart() throws Exception {
+			mockMvc.perform(get("/api/v1/offerings?startDateTime=2"))
+					.andExpect(status().is4xxClientError());	
+		}
+	
+		//test successful get all
+		//should return 2xx
+		@Test
+		public void getAllOfferingsParamEnd() throws Exception {
+			mockMvc.perform(get("/api/v1/offerings?endDateTime=2"))
+					.andExpect(status().is4xxClientError());	
+		}
     
+		
+		
+		
+		
     
 	
 }
