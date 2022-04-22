@@ -52,6 +52,7 @@ public class AppTest {
 	
 	
 	
+	
 	@InjectMocks
     private OfferingService offeringService;
  
@@ -178,6 +179,18 @@ public class AppTest {
 				.andExpect(status().isOk())		
 				.andExpect(content().contentType("application/json"));
 	}
+	
+	
+	
+	//test successful home
+	//should return 2xx
+	@Test
+	public void home() throws Exception {
+		mockMvc.perform(get("/"))
+				.andExpect(status().isOk());	
+	}
+	
+	
 
 	//test successful get id
 	//should return 2xx
