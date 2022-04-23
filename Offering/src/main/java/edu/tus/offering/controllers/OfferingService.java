@@ -42,9 +42,9 @@ public class OfferingService{
 	
 	@RequestMapping("/")
 	public String home() {
-		return "Welcome! v1";
+		return "Welcome! v2";
 	}
-	
+
 	//OFFERINGS	
 	
 	//get all or specific (anything else but id)
