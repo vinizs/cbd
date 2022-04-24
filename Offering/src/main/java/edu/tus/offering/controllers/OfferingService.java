@@ -45,6 +45,8 @@ public class OfferingService{
 		return "Welcome! v1";
 	}
 
+	
+	
 	//OFFERINGS	
 	
 	//get all or specific (anything else but id)
